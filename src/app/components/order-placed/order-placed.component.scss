@@ -1,0 +1,185 @@
+
+.order-placed-main-container{
+    width: 100%;
+    height: 100%;
+    color: #333232;
+    padding-bottom: 5rem;
+}
+
+.order-placed-body-cnt{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // align-content: center;
+    text-align: center;
+    // background-color: red;  
+    // margin-bottom: 9rem;
+}
+
+.order-placed-confetti-msg-cnt{
+    padding: 3rem 0rem; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+.order-placed-main-container h1{
+    color: rgb(103, 103, 103);
+}
+
+
+.order-placed-body-cnt .order-placed-msg{
+    font-size: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.order-placed-msg span{
+    width: 300px;
+}
+
+.admin-details-cnt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+.admin-details-cnt table{
+    // width: 60%;
+    font-size: 0.8rem;
+}
+
+.wide-cell{
+    width: 100px;
+}
+
+table{
+    // height: 100px;
+    max-width: 750px;
+}
+
+td{
+    border: 1px solid #8d8b8b;
+    // margin: 0;
+    padding: 0.35rem;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid #8d8b8b;
+    border-collapse: collapse;
+}
+
+thead {
+    border: 1px solid #8d8b8b;
+    background-color: #a75459;
+    color:white;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+
+
+table tbody > tr{
+    vertical-align: top;
+    // padding: 1rem;
+}
+
+.admin-details-cnt button{
+    background-color: #3371B5;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.order-placed-confetti-msg-cnt{
+    width: 100%;
+}
+
+.img-cnt{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-placed-confetti-msg-cnt img{
+    width: 70%;
+    max-width: 300px;
+
+}
+
+
+@media(min-width:320px){
+
+    tr{
+        font-size: 0.7rem;
+    }
+
+    .order-placed-main-container{
+        width: 100%;
+    }
+
+    .order-placed-body-cnt{
+        width: 100%;
+        // gap: 2rem;
+    }
+
+    .order-placed-confetti-msg-cnt{
+        font-size: 0.7rem;
+        width: 100%;
+    }   
+
+    .order-placed-msg > span{
+        font-size: 0.9rem;
+    }
+
+    .admin-details-cnt{
+        padding:  0 3rem;
+    }
+
+    .order-placed-footer-cnt{
+        width: 100%;
+    }
+
+    .order-placed-confetti-msg-cnt img{
+        width: 80%;
+        // background-color: red;
+    }
+
+
+}
+
+@media(min-width:768px){
+    .order-placed-msg > span{
+        font-size: 1.2rem;
+    }
+    
+    .order-placed-main-container h1{
+        color: rgb(103, 103, 103);
+        font-size: 1.9rem;
+        // background-color: red;
+    }
+
+    .admin-details-cnt table tbody tr td{
+        // background-color: red;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        width: 250px;
+        
+    }
+}
+

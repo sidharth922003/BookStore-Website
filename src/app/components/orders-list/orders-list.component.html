@@ -1,0 +1,42 @@
+<div class="class-route-cnt">
+  <div class="order-routes">
+      <span [routerLink]="['/']">Home&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+      <span>My Orders</span>
+  </div>
+</div>
+
+<div class="order-list-main-container">
+  <div *ngIf="ordersList.length === 0" class="order-list-header">
+    <span class="order-list-empty-msg">Your order list is currently empty. Start adding items to see them here!</span>
+    <div class="order-placed-img">
+      <img src="../../../assets/order-list.jpg" alt="">
+    </div>
+  </div>
+    <div class="order-cnt" *ngFor="let order of ordersList">
+      <div class="order-details-main-cnt">
+          <div class="order-details-container">
+              <div class="order-detail-img-cnt">
+                <img
+                  src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3A138faf88-74b8-4931-8d8a-2413a3fcc2b9&params=version%3A0&token=1725273441_da39a3ee_60380030bf47de43f7525abef2836e6882dce23a&api_key=CometServer1"
+                  alt=""
+                />
+              </div>
+              <div class="order-details-cnt">
+                <div class="order-details">
+                  <span>{{ "Don't Make Me Think" }}</span>
+                  <span>{{ "by Steve Krug" }}</span>
+                  <div class="prices">
+                    <span>Rs. {{ "1500" }}</span>
+                    <span>Rs. {{ "2000" }}</span>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="order-date-cnt">
+              <div class="greenDot"></div>
+              <div class="order-placed-date">{{this.randomDateGenerator()}}</div>
+          </div>
+      </div>
+    </div>
+  </div>
+  

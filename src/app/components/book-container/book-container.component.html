@@ -1,0 +1,27 @@
+<div class="grid-layout">
+  <div class="header">
+    <h2>Books <span class="total-books">({{ totalBooks }})</span></h2>
+    <div class="sort">
+      <div class="dropdown">
+        <button class="dropdown-toggle">Sort by relevance <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+        <div class="dropdown-menu">
+          <p (click)="sortBooks('lowHigh')">Price: Low to High</p>
+          <p (click)="sortBooks('highLow')">Price: High to Low</p>
+          <a (click)="sortBooks('newest')">Newest Arrivals</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div *ngFor="let book of paginatedBooks | search:searchQuery">
+      <app-book-card [randomImg]="this.getBookImage()" [book]="book"></app-book-card>
+    </div>
+    <div class="pagination-container">
+      <div class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1"><</button>
+        <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage">{{ page }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">></button>
+      </div>
+    </div>
+  </div>
+</div>

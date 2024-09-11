@@ -1,0 +1,27 @@
+
+<div class="book-card" (click)="clickingOnParticularCard()">
+    <div class="book-image-container">
+      <img class="image" [src]="randomImg">
+    </div>    
+    <div class="book-details">
+      <h2>{{ book.bookName}}</h2>
+      <p class="author">by {{ book?.author }}</p>
+      <div class="star-rating">
+        <div class="rating">
+          <span>4.5</span>
+          <span class="fa fa-star checked"></span>
+        </div>
+      <div>
+        <span class="review-quantity">({{book.quantity}})</span>
+      </div>
+    </div>
+      <div class="price-container">
+        <p class="price">Rs {{ book?.discountPrice }}</p>
+        <p class="discount-price"><s>Rs {{ book?.price }}</s></p>  
+      </div>
+    </div>
+    
+    
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

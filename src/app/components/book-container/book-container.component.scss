@@ -1,0 +1,226 @@
+.grid-layout {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+ 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+ 
+.book-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 16px;
+  width: 220px;
+  height: 275px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+ 
+.book-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+ 
+.book-details {
+  margin-top: 14px;
+}
+ 
+.total-books {
+  color: grey;
+  font-size: 12px;
+}
+ 
+ 
+.price {
+  color: #e91e63;
+  font-weight: bold;
+}
+ 
+.card-container {
+  width: 100%;
+  display: flex;
+  gap: 27px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+ 
+}
+ 
+.sort {
+  margin-bottom: 0;
+}
+ 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+ 
+.dropdown-toggle {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 161px;
+  max-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+ 
+ 
+.dropdown-toggle:hover {
+  background-color: #e2e6ea;
+}
+ 
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+ 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+ 
+.dropdown-menu p, .dropdown-menu a {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+ 
+.dropdown-menu p:hover, .dropdown-menu a:hover {
+  background-color: #ddd;
+}
+ 
+ 
+@media (max-width: 1200px) {
+  .grid-layout {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+ 
+@media (max-width: 992px) {
+  .grid-layout {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .grid-layout {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+ 
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+ 
+  .book-card {
+    max-width: 100%;
+    text-align: left;
+    font: normal normal normal 14px/19px Roboto;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+  }
+ 
+  .card-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+ 
+@media (max-width: 576px) {
+  .grid-layout {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+ 
+  .header {
+    align-items: center;
+  }
+ 
+  .book-card {
+    padding: 10px;
+    max-width: 100%;
+  }
+ 
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+  .pagination {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+  }
+ 
+  .pagination button {
+    padding: 5px;
+  }
+ 
+  .pagination span {
+    margin: 0 5px;
+  }
+}
+ 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+ 
+.pagination button {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 90%;
+  transition: background-color 0.3s ease;
+}
+ 
+.pagination button:hover {
+  background-color: #e2e6ea;
+}
+ 
+.pagination span {
+  margin: 0 10px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+ 
+.pagination span.active {
+  background-color: #8F2B2F;
+  color: white;
+  border-color: #8F2B2F;
+}
+ 
+.pagination-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

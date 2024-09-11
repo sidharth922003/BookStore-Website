@@ -1,0 +1,32 @@
+<div class="wishlist-container">
+  <div class="breadcrumb">
+    <a routerLink="/home/books" class="breadcrumb-link">Home</a> / 
+    <span class="breadcrumb-current">Profile</span>
+  </div>
+  <div class="wishlist-header">
+    <h1 class="mywishlist">My Wishlist ({{ allWishListedItem.length }})</h1>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Conditional message when wishlist is empty -->
+  <div *ngIf="allWishListedItem.length === 0" class="empty-wishlist">
+    <p>Please add your favourite item to the wishlist.</p>
+    <img src="https://jangmidiamonds.com/assets/images/empty-wishlist.png" alt="Empty Wishlist" class="empty-wishlist-image">
+  </div>
+
+  <!-- Wishlist items -->
+  <ul *ngIf="allWishListedItem.length > 0">
+    <li *ngFor="let book of allWishListedItem" class="list-box">
+      <img [src]="book.bookImage" alt="{{ book.bookName }}" />
+      <div class="book-details">
+        <div class="book-details-header">
+          <h2 class="book-title">{{ book.bookName ? book.bookName : "The famous book with amazing content" }}</h2>
+          <button (click)="deleteBook(book)"><i class="fa fa-trash"></i></button>
+        </div>
+        <p class="book-author">by {{ book.author ? book.author : "Robin Sharma"}}</p>
+        <p class="book-price">Price: Rs. {{ book.price ? book.price :"599" }}</p>
+      </div>
+    </li>
+  </ul>
+</div>

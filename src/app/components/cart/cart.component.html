@@ -1,0 +1,380 @@
+<div class="class-route-cnt">
+  <div class="cart-routes">
+      <span [routerLink]="['/']">Home&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+      <span>My Cart</span>
+  </div>
+</div>
+<div class="cart-main-component">
+<div class="mycart-items-list-container">
+  <div class="my-cart-item">
+    <div class="mycart-header-cnt">
+      <span id="my-cart-length">My cart({{ allCartItems.length }})</span>
+      <div class="cart-location-cnt">
+        <mat-icon
+          svgIcon="location-icon"
+          aria-hidden="false"
+          aria-label="location-icon"
+          class="custom-icon-size"
+        ></mat-icon>
+        <select name="cars" id="select-cart-location">
+          <option>BridgeLabz Solutions LLP...</option>
+          <option value="volvo">Banglore</option>
+          <option value="saab">Pune</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- loop -->
+    <ng-container *ngIf="toggleMyCartState == 1">
+      <div *ngFor="let cartItem of allCartItems">
+        <div class="cart-details-main-cnt">
+          <div class="cart-detail-img-cnt" >
+            <img [src]="getBookImg()" alt="Random Image">
+          </div>
+          <div class="cart-details-cnt">
+            <div class="cart-details">
+              <span>{{ cartItem.product_id.bookName }}</span>
+              <span>{{ cartItem.product_id.author }}</span>
+              <div class="prices">
+                <span>Rs. {{ cartItem.product_id.discountPrice }}</span>
+                <span>Rs. {{ cartItem.product_id.price }}</span>
+              </div>
+            </div>
+            <div class="cart-item-counter-cnt">
+              <button (click)="decreaseCartItemCount(cartItem)">-</button>
+              <div class="cart-counter-value-cnt">
+                {{ cartItem.quantityToBuy }}
+              </div>
+              <button (click)="increaseCartItemCount(cartItem)">+</button>
+              <span
+                id="cart-remove-btn"
+                (click)="handleRemoveCartItem(cartItem)"
+                >Remove</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="cart-place-order-cnt">
+      <div *ngIf="allCartItems.length === 0" class="empty-cart-cnt">
+        <div class="empty-cart-img">
+          <img [src]="getBookImg()"  alt="img" />
+        </div>
+        <div>
+          <span class="empty-cart-span" *ngIf="allCartItems.length === 0"
+            >your cart is empty</span
+          >
+        </div>
+      </div>
+      <button class="place-order-btn" (click)="handleRedirectPlaceOrder()">
+        Place order
+      </button>
+    </div>
+  </div>
+
+  <div class="my-cart-item mycart-customer-details-main-cnt">
+    <div class="mycart-details-header-cnt">
+      <span id="cp" (click)="toogleAddressCnt()">Customer Details</span>
+      <Button *ngIf="token" class="cart-add-address-btn" (click)="handleAddNewAddress()"
+        >Add New Address</Button
+      >
+    </div>
+    <div *ngIf="isAddNewAddressVisible" class="mycart-customer-details-cnt">
+      <div class="customer-details-form-cnt">
+        <ng-container *ngIf="toggleMyCartState == 2">
+          <div class="customer-form-item">
+            <div class="customer-form-input-cnt">
+              <label for="fname">Full Name</label>
+              <input
+                type="text"
+                value="{{ this.userFullName }}"
+                [(ngModel)]="customerDetails.fullname"
+              />
+            </div>
+            <div class="customer-form-input-cnt">
+              <label for="fname">Mobile Number</label>
+              <input
+                type="text"
+                value="{{ this.userPhoneNumber }}"
+                [(ngModel)]="customerDetails.mobileNumber"
+              />
+            </div>
+          </div>
+          <div *ngIf="isAddressEmpty" class="customer-form-item">
+            <div class="customer-form-input-cnt">
+              <label for="address">Address</label>
+              <input
+                class="customer-address"
+                name=""
+                id=""
+                [(ngModel)]="customerDetails.address"
+              />
+            </div>
+          </div>
+          <div *ngIf="isAddressEmpty" class="customer-form-item">
+            <div class="customer-form-input-cnt">
+              <label for="fname">city/town</label>
+              <input
+                type="text"
+                value="Banglore"
+                [(ngModel)]="customerDetails.city"
+              />
+            </div>
+            <div class="customer-form-input-cnt">
+              <label for="fname">state</label>
+              <input
+                type="text"
+                value="Karnataka"
+                [(ngModel)]="customerDetails.state"
+              />
+            </div>
+          </div>
+          <div
+            *ngIf="isAddressEmpty"
+            class="customer-form-item customer-address-type-main-cnt"
+          >
+            <span>Type</span>
+            <div class="customer-address-type-cnt">
+              <div class="address-item">
+                <input
+                  type="radio"
+                  name="addressType"
+                  id="home"
+                  value="Home"
+                  [(ngModel)]="customerDetails.addressType"
+                />
+                <label for="home">Home</label>
+              </div>
+
+              <div class="address-item">
+                <input
+                  type="radio"
+                  name="addressType"
+                  id="work"
+                  value="Office"
+                  [(ngModel)]="customerDetails.addressType"
+                />
+                <label for="work">Work</label>
+              </div>
+
+              <div class="address-item">
+                <input
+                  type="radio"
+                  name="addressType"
+                  id="other"
+                  value="Other"
+                  [(ngModel)]="customerDetails.addressType"
+                />
+                <label for="other">Other</label>
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="!isAddressEmpty"
+            class="customer-form-item customer-address-type-main-cnt"
+          >
+            <!-- <span>Type</span> -->
+            <div class="customer-address-type2-cnt">
+              <div class="customer-address">
+                <div class="address-item">
+                  <input
+                    type="radio"
+                    name="addressType"
+                    id="office"
+                    value="Office"
+                    [(ngModel)]="updateAddressObj.addressType"
+                  />
+                  <label for="home">Work</label>
+                  <div class="edit-address-btn" (click)="toggleWorkEdit()">
+                    Edit
+                  </div>
+                </div>
+                <div class="address-item2">
+                  <div class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="address">Address</label>
+                      <input
+                        id="customer-address"
+                        name=""
+                        id=""
+                        *ngIf="isWorkEditing"
+                        [(ngModel)]="allAddress[0].fullAddress"
+                      />
+                      <p *ngIf="!isWorkEditing">
+                        {{ allAddress[0].fullAddress }}
+                      </p>
+                    </div>
+                  </div>
+                  <div *ngIf="isWorkEditing" class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">city/town</label>
+                      <input
+                        type="text"
+                        value="Banglore"
+                        *ngIf="isWorkEditing"
+                        [(ngModel)]="allAddress[0].city"
+                      />
+                      <p *ngIf="!isWorkEditing">{{ allAddress[0].city }}</p>
+                    </div>
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">state</label>
+                      <input
+                        type="text"
+                        value="Karnataka"
+                        *ngIf="isWorkEditing"
+                        [(ngModel)]="allAddress[0].state"
+                      />
+                      <p *ngIf="!isWorkEditing">{{ allAddress[0].state }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="customer-address">
+                <div class="address-item">
+                  <input
+                    type="radio"
+                    name="addressType"
+                    id="home"
+                    value="Home"
+                    [(ngModel)]="updateAddressObj.addressType"
+                  />
+                  <label for="home">Home</label>
+                  <div class="edit-address-btn" (click)="toggleHomeEdit()">
+                    Edit
+                  </div>
+                </div>
+                <div class="address-item2">
+                  <div class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="address">Address</label>
+                      <textarea
+                        id=""
+                        name=""
+                        *ngIf="isHomeEditing"
+                        [(ngModel)]="allAddress[2].fullAddress"
+                      ></textarea>
+                      <p *ngIf="!isHomeEditing">
+                        {{ allAddress[2].fullAddress }}
+                      </p>
+                    </div>
+                  </div>
+                  <div *ngIf="isHomeEditing" class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">city/town</label>
+                      <input
+                        type="text"
+                        value="Banglore"
+                        *ngIf="isHomeEditing"
+                        [(ngModel)]="allAddress[2].city"
+                      />
+                      <p *ngIf="!isHomeEditing">{{ allAddress[2].city }}</p>
+                    </div>
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">state</label>
+                      <input
+                        type="text"
+                        value="Karnataka"
+                        *ngIf="isHomeEditing"
+                        [(ngModel)]="allAddress[2].state"
+                      />
+                      <p *ngIf="!isHomeEditing">{{ allAddress[2].state }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="customer-address">
+                <div class="address-item">
+                  <input
+                    type="radio"
+                    name="addressType"
+                    id="other"
+                    value="Other"
+                    [(ngModel)]="updateAddressObj.addressType"
+                  />
+                  <label for="other">Other</label>
+                  <div class="edit-address-btn" (click)="toggleOtherEdit()">
+                    Edit
+                  </div>
+                </div>
+                <div class="address-item2">
+                  <div class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="address">Address</label>
+                      <input
+                        id="customer-address"
+                        name=""
+                        id=""
+                        *ngIf="isOtherEditing"
+                        [(ngModel)]="allAddress[0].fullAddress"
+                      />
+                      <p *ngIf="!isOtherEditing">
+                        {{ allAddress[0].fullAddress }}
+                      </p>
+                    </div>
+                  </div>
+                  <div *ngIf="isOtherEditing" class="customer-form-item">
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">city/town</label>
+                      <input
+                        type="text"
+                        value="Banglore"
+                        *ngIf="isOtherEditing"
+                        [(ngModel)]="allAddress[0].city"
+                      />
+                      <p *ngIf="!isOtherEditing">{{ allAddress[0].city }}</p>
+                    </div>
+                    <div class="customer-form-input-cnt">
+                      <label for="fname">state</label>
+                      <input
+                        type="text"
+                        value="Karnataka"
+                        *ngIf="isOtherEditing"
+                        [(ngModel)]="allAddress[0].state"
+                      />
+                      <p *ngIf="!isOtherEditing">{{ allAddress[0].state }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div class="cart-place-order-cnt">
+          <button  *ngIf="token"  (click)="handleAddressField()">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-cart-item mycart-order-summary-cnt">
+    <span>Order Summary</span>
+    <ng-container *ngIf="toggleMyCartState == 3">
+      <div *ngFor="let cartItem of allCartItems">
+        <div class="cart-details-main-cnt">
+          <div class="cart-detail-img-cnt">
+            <img
+              src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3A29fe0f12-8872-4e38-b7b8-ae97b115d640&params=version%3A0&token=1725289454_da39a3ee_db75758dc59b3b19f7e83df367a75711744ee25d&api_key=CometServer1"
+              alt=""
+            />
+          </div>
+          <div class="cart-details-cnt">
+            <div class="cart-details">
+              <span>{{ cartItem.product_id.bookName }}</span>
+              <span>{{ cartItem.product_id.author }}</span>
+              <div class="prices">
+                <span>Rs. {{ cartItem.product_id.discountPrice }}</span>
+                <span>Rs. {{ cartItem.product_id.price }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="cart-place-order-cnt">
+      <button  *ngIf="token"  (click)="handleRedirectCheckout()">checkout</button>
+    </div>
+  </div>
+</div>
+</div>

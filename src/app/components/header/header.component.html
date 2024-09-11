@@ -1,0 +1,95 @@
+<div class="main-header-cnt" *ngIf="showDiv">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <div class="header-left-cnt">
+      <!-- <div (click)="navigateToOrders()">order</div> -->
+        <div class="title-div" (click)="navigateToBookList()">
+            <img src="../../../assets/education.png" class="title-logo">
+            <span>Bookstore</span>
+        </div>
+        <div class="search-bar">
+          <span class="material-symbols-outlined" id="search-icon">
+            search
+            </span>    
+          <input type="text" class="search-bar-input" placeholder="Search" [(ngModel)]="searchQuery" (ngModelChange)="setSearchQuery()">
+              </div>
+    </div>
+   
+    <div class="header-right-cnt">
+        <div class="icon-div" *ngIf="!isLogin " [matMenuTriggerFor]="withoutprofile">
+            <span class="material-symbols-outlined">
+                person
+                </span>
+            <span class="icon-name">Profile</span>
+                  </div>
+                  <div class="icon-div" *ngIf="isLogin" [matMenuTriggerFor]="withprofile">
+                    <span class="material-symbols-outlined">
+                        person
+                        </span>
+                    <span class="icon-name">Poonam</span>
+                          </div>
+                          
+                  <div *ngIf="cartNo!=0"class="icon-div"id="icon-div-cart"  (click)="handleCart()" (click)="navigateToCart()"  >
+                    <mat-icon  matBadge="{{cartNo}}" matBadgeColor="warn"><span class="material-symbols-outlined">shopping_cart</span></mat-icon>
+
+                    <span class="icon-name-cart" >Cart</span>
+                  </div>
+                  <div  *ngIf="cartNo==0" class="icon-div"  (click)="handleCart()" (click)="navigateToCart()"  >
+                   <span class="material-symbols-outlined">shopping_cart</span>
+
+                    <span class="icon-name" >Cart</span>
+                  </div>
+    </div> 
+    <mat-menu  #withoutprofile="matMenu" class="without-login-popup" id="without-login">
+        <div class="without-login-popup-header">
+        <span style="font-size: 13px; font-weight: 500;">Welcome</span>
+        <span style="font-size: 10px;">To access account & manage orders</span>
+        <button class="logIn-btn" (click)="openDialog('0ms', '0ms')" >LOGIN/SIGNUP</button>
+        <hr>
+        </div>
+        <button mat-menu-item class="menu-btn" (click)="navigateToOrderList()">
+          <span class="material-symbols-outlined"  id="menu-icon" >
+            shopping_bag
+            </span>
+          <span style="font-size: 10px;" >My Orders</span>
+        </button>
+        <button mat-menu-item class="menu-btn" (click)="navigateToWishList()">
+          <span class="material-symbols-outlined" id="menu-icon" >
+            favorite
+            </span>
+          <span style="font-size: 10px;" >Wishlist</span>
+        </button>
+        <button mat-menu-item class="menu-btn" (click)="navigateToAdmin()">
+          <span class="material-symbols-outlined" id="menu-icon" >
+            person
+            </span>
+          <span style="font-size: 10px;" >Admin</span>
+        </button>
+       
+      </mat-menu>
+      <mat-menu  #withprofile="matMenu" class="without-login-popup">
+        <div class="without-login-popup-header">
+        <span style="font-size: 13px; font-weight: 500;">Hello, Poonam</span>
+        </div>
+        <button mat-menu-item class="menu-btn" (click)="navigateToProfile()">
+          <span class="material-symbols-outlined"  id="menu-icon" >
+            person
+            </span>
+          <span style="font-size: 10px;" >Profile</span>
+        </button>
+        <button mat-menu-item class="menu-btn" (click)="navigateToOrderList()" >
+          <span class="material-symbols-outlined"  id="menu-icon" >
+            shopping_bag
+            </span>
+            <span style="font-size: 10px;" >My Orders</span>
+          </button>
+        <button mat-menu-item class="menu-btn" (click)="navigateToWishList()">
+          <span class="material-symbols-outlined" id="menu-icon" >
+            favorite
+            </span>
+          <span style="font-size: 10px;" >Wishlist</span>
+        </button>
+        <button (click)="handleLogOut()" class="logout-btn">LOGOUT</button>
+      </mat-menu>
+     
+
+</div>

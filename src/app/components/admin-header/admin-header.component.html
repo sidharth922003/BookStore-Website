@@ -1,0 +1,62 @@
+<div class="main-header-cnt">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <div class="header-left-cnt">
+      <!-- <div (click)="navigateToOrders()">order</div> -->
+        <div class="title-div" >
+            <img src="../../../assets/education.png" class="title-logo">
+            <span>Bookstore</span>
+        </div>
+        <div class="search-bar">
+          <span class="material-symbols-outlined" id="search-icon">
+            search
+            </span>  
+          <input type="text" class="search-bar-input" placeholder="Search" [(ngModel)]="searchQuery" (ngModelChange)="setSearchQuery()">
+                </div>
+    </div>
+   
+    <div class="header-right-cnt">
+        
+                          <div class="icon-div" *ngIf="!isLogin"  [matMenuTriggerFor]="adminProfile">
+                            <span class="material-symbols-outlined">
+                                person
+                                </span>
+                            <span class="icon-name">Admin</span>
+                                  </div>
+                                  <div class="icon-div" *ngIf="isLogin"  [matMenuTriggerFor]="LoginadminProfile">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                        </span>
+                                    <span class="icon-name">Admin</span>
+                                          </div>
+                 
+    </div> 
+  
+      
+      <mat-menu  #adminProfile="matMenu" class="without-login-popup">
+        <div class="without-login-popup-header">
+        <span style="font-size: 13px; font-weight: 500;">Welcome</span>
+        <span style="font-size: 10px;">To access account & manage books</span>
+        <!-- <button mat-raised-button (click)="openDialog('0ms', '0ms')" style="width: 70%; padding: 3%; border: 2px solid red; background-color: white; color: red; border-radius: 3px; height: 25px; font-size: 10px; margin: auto;">LOGIN/SIGNUP</button> -->
+        <button class="logIn-btn" (click)="openDialog('0ms', '0ms')" >LOGIN/SIGNUP</button>
+        </div>
+      
+
+       
+      </mat-menu>
+      <mat-menu  #LoginadminProfile="matMenu" class="without-login-popup">
+        <div class="without-login-popup-header">
+        <span style="font-size: 13px; font-weight: 500;">Welcome, Admin</span>
+        
+        </div>
+        <button mat-menu-item class="menu-btn" >
+          <span class="material-symbols-outlined" id="menu-icon">
+            menu_book
+            </span>
+          <span style="font-size: 10px;" (click)="openAddBook('0ms', '0ms')" >Add Book</span>
+        </button>
+        <button class="logout-btn" (click)="handleLogOut()" >LOGOUT</button>
+
+       
+      </mat-menu>
+
+</div>

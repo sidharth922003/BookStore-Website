@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<div class="route">
+    <span style="color: gray;" (click)="navigateToBookList()">Home/</span>
+    <span>Book(01)</span>
+</div>
+<div class="main-book-desc-cnt">
+   
+    <div class="book-desc-left-content">
+       <div class="all-img-div">
+        <div class="image-options-div">
+            <div class="small-img-div">
+                <img class="main-book-img" (click)="showImage(selectedImages[0])"  [src]="selectedImages[0]">
+            </div>
+            <div class="small-img-div">
+                <img class="main-book-img" (click)="showImage(selectedImages[1])"  [src]="selectedImages[1]">
+            </div>
+        </div>
+        <div class="main-book-img-div">
+            <img class="main-book-img" [src]="imageSrc">
+        </div>
+       </div>
+        <div class="buttons-div">
+            <div *ngIf="currentQuantity==0" class="button">
+                <button (click)="sendCartListData('plus')" (click)="setCartNumber()" id="add-to-bag-btn" >ADD TO BAG</button>
+              </div>
+              <div *ngIf="currentQuantity>0"  class="quantity-controls">
+                <button class="plus-minus" (click)="sendCartListData('minus')" [disabled]="currentQuantity==1">-</button>
+                <span style="border: 1px solid gray; width: 20%; justify-content: center; display: flex;" >{{currentQuantity}}</span>
+                <button class="plus-minus" (click)="sendCartListData('plus')">+</button>
+              </div>
+              <button *ngIf="!isInWishlist" class="button" id="wishlist-btn" (click)="sendDataToWishlist()">
+                <span class="material-symbols-outlined">favorite</span>
+                WISHLIST
+              </button>
+              <button *ngIf="isInWishlist" class="button" id="wishlist-btn" [disabled]="isInWishlist"(click)=" deleteDataFromWishList()">
+                <span class="material-symbols-outlined">favorite</span>
+                WISHLISTED
+              </button>
+        </div>
+    </div>
+    <div class="book-desc-right-content">
+        <div class="title-div">
+            <span style="font-size: 27px; font-weight: 600;">{{book[0].bookName}}</span>
+            <span style="font-size: 18px; font-weight: 0; color: gray;">{{book[0].author}}</span>
+           <div class="whole-rating-div"> 
+            <div class="rating-div">{{displayRating}}<span class="material-symbols-outlined" style="
+                font-size: 15px;">
+                    grade
+                    </span>
+            </div>
+            <span>({{feedback.length}})</span>
+           </div>
+            <div style="display: flex; gap: 10px;">
+                <span style="font-size: 24px; font-weight: 600;">Rs.{{book[0].discountPrice}}</span>
+                <span style="font-size: 15px; font-weight: 400; color: gray;text-decoration: line-through;"> Rs.{{book[0].price}}</span>
+            </div>
+            <hr>
+
+            <span style="font-size: 16px; font-weight: 400; color: gray;">Book Detail</span>
+            <span style="font-size: 14px;">{{book[0].description}}</span>
+
+            <hr>
+        </div>
+        <div class="feedback-div">
+            <span style="font-size: 20px; font-weight: 500;">Customer Feedback</span>
+            <div class="add-review-div">
+                <span>Overall Rating</span>
+                <div class="five-star-div">
+                    <span *ngFor="let star of stars; let i = index" 
+                    class="material-symbols-outlined"
+                    [ngClass]="{'filled': star}"
+                    (click)="rate(i)">
+                grade
+              </span>
+                </div>
+                <input class="review-input" type="text" placeholder=" Write a review" [(ngModel)]="review">
+                <button class="review-submit" (click)="handleAddNewReview()">Submit</button>
+            </div>
+             <div class="feedback-scrollable-div">
+                <div *ngFor="let singleFeedback of feedback">
+                    <div class="review-list">
+                        <div  class="feedback-user">
+                            <div class="feedback-user-logo">{{singleFeedback.user_id.fullName.charAt(0)}}</div>
+                            <span>{{singleFeedback.user_id.fullName}}</span>
+                        </div>
+                       <div class="feedback-internal-content">
+                        <div class="five-star-div">
+                            <span *ngFor="let star of getStars(singleFeedback.rating)"
+                            class="material-symbols-outlined"
+                            [ngClass]="{'filled': star}" 
+                            > grade
+                      </span>
+                        </div>
+                        <span>{{singleFeedback.comment}}</span>
+        
+                       </div>
+                    </div>
+                   </div>
+             </div>
+        </div>
+        
+    </div>
+</div>

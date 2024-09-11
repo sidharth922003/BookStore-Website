@@ -1,0 +1,52 @@
+<div class="profile-container">
+  <div class="breadcrumb">
+    <a routerLink="/home/books" class="breadcrumb-link">Home</a> / 
+    <span class="breadcrumb-current">Profile</span>
+  </div>
+
+  <h2>Personal Details <span class="edit-link" (click)="editPersonalDetails()">Edit</span></h2>
+
+  <form [formGroup]="profileForm">
+    <label for="fullName">Full Name:</label>
+    <input id="fullName" type="text" formControlName="fullName" [readonly]="!isEditingPersonalDetails" />
+
+    <label for="email">Email Id:</label>
+    <input id="email" type="email" [readonly]="!isEditingPersonalDetails" />
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password" [readonly]="!isEditingPersonalDetails" />
+
+    <label for="mobile">Mobile Number:</label>
+    <input id="mobile" type="tel" [readonly]="!isEditingPersonalDetails" />
+
+    <button *ngIf="isEditingPersonalDetails" (click)="savePersonalDetails()">Save</button>
+  </form>
+
+  <h2 class="address-details">Address Details <button (click)="addNewAddress()">Add New Address</button></h2>
+  <form [formGroup]="addressForm" class="address-form">
+    <label for="address">Address:</label>
+    <input id="address" type="text" formControlName="address" [readonly]="!isEditingAddressDetails" class="address-input" />
+
+    <div class="city-state-container">
+      <div>
+        <label for="city">City/Town:</label>
+        <input id="city" type="text" formControlName="city" [readonly]="!isEditingAddressDetails" />
+      </div>
+      <div>
+        <label for="state">State:</label>
+        <input id="state" type="text" formControlName="state" [readonly]="!isEditingAddressDetails" />
+      </div>
+    </div>
+
+    <label>Type:</label>
+    <div class="address-type-container">
+      <div class="address-type-options">
+        <input type="radio" formControlName="type" value="Home" [disabled]="!isEditingAddressDetails" /> Home
+        <input type="radio" formControlName="type" value="Office" [disabled]="!isEditingAddressDetails" /> Office
+        <input type="radio" formControlName="type" value="Other" [disabled]="!isEditingAddressDetails" /> Other
+      </div>
+    </div>
+
+    <button *ngIf="isEditingAddressDetails" (click)="saveAddressDetails()">Save</button>
+  </form>
+</div>

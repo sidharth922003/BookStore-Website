@@ -1,0 +1,76 @@
+<mat-dialog-content>
+    <div class="full-cnt">
+        <div class="online-book-shopping">
+            <div class="login-panel">
+                <!-- Left Panel with Image -->
+                <div class="image-container">
+                    <img
+                        src="../../../assets/login.png">
+                    <br><br>
+                    <p style="font-size:20px;"><b>ONLINE BOOK SHOPPING</b></p>
+                </div>
+                <!-- Right Panel with Login and Signup Form -->
+                <div class="form">
+                    <mat-tab-group #tabGroup>  
+                        <mat-tab label="LOGIN" >
+                            <form class="login-body" [formGroup]="loginForm">
+                                <div class="Email" >
+                                <label style="font-size:12px" >Email id</label>
+                                <mat-form-field class="input-cnt-main" appearance="outline">
+                                    <input formControlName="email" matInput>
+                                </mat-form-field>
+                                </div>
+                                <div class="password">
+                                <label style="font-size:12px" >Password</label>
+                                <mat-form-field class="input-cnt-main" appearance="outline" >
+                                    <input formControlName="password" class="form-control" matInput [type]="hide_login ? 'password' : 'text'"  required>
+                                    <button mat-icon-button matSuffix (click)="togglePasswordVisibilitylogin()" tabindex="-1">
+                                        <mat-icon>{{hide_login ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                      </button>
+                                      <mat-hint align="end" class="forget" (click)="navigateToForgetPassword()">Forgot password?</mat-hint>
+                                </mat-form-field>
+                                </div>
+
+                                <!-- Login Button -->
+                                <button mat-raised-button (click)="login()" class="login-btn">Login</button>
+
+                                <!-- OR Separator -->
+                                <div class="or-separator">OR</div>
+
+                                <!-- Social Media Login Buttons -->
+                                <div class="btn">
+                                    <button mat-raised-button class="facebook-btn">Facebook</button>
+                                    <button mat-raised-button class="google-btn">Google</button>
+                                </div>
+                            </form>
+                        </mat-tab>
+                        <mat-tab label="SIGNUP">
+                            <form class="signup-body" [formGroup]="registerForm">
+                                <label style="font-size:12px" >Full Name</label>
+                                <mat-form-field class="input-cnt-sign"   appearance="outline" >
+                                    <input formControlName="fullName" matInput type="text">
+                                </mat-form-field>
+                                <label style="font-size: 12px;">Email Id</label>
+                                <mat-form-field class="input-cnt-sign" appearance="outline">
+                                    <input formControlName="email" matInput type="text">
+                                </mat-form-field>
+                                <label style="font-size: 12px;">Password</label>
+                                <mat-form-field class="input-cnt-sign" appearance="outline">
+                                    <input formControlName="password" matInput type="password">
+                                </mat-form-field>
+                                <label style="font-size: 12px;">Mobile Number</label>
+                                <mat-form-field class="input-cnt-sign" appearance="outline">
+                                    <input formControlName="phone" matInput type="tel">
+                                </mat-form-field>
+                                <!-- Signup Button -->
+                                <button style="width: 100%;background-color:#A03037;color:white" mat-raised-button (click)="userRegister()">Sign
+                                    Up</button>
+                            </form>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+        </div>   
+    </div>
+</mat-dialog-content>
+
